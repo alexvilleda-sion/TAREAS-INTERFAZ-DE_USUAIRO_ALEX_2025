@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Ejercicio 2 - Roles ARIA</title>
+  <style>
+    body { font-family: Arial, sans-serif; padding: 20px; }
+    .tabs button { margin-right: 8px; padding: 6px 12px; cursor: pointer; }
+    .tabpanel { border: 1px solid #ccc; padding: 10px; margin-top: 8px; }
+    [hidden] { display: none; }
+    .table [role="row"] { display: flex; }
+    .table [role="cell"], .table [role="columnheader"] { flex: 1; padding: 6px; border: 1px solid #ddd; }
+    .table [role="columnheader"] { font-weight: bold; background: #f0f0f0; }
+    .fake-img { width: 200px; height: 120px; background: linear-gradient(90deg, #0ea5e9, #22d3ee); border-radius: 8px; margin-top: 12px; }
+  </style>
+</head>
+<body>
+  <h1>Ejercicio 2 — Roles ARIA</h1>
+
+  <!-- role="tablist" -->
+  <section>
+    <h2>Ejemplo de pestañas (tablist)</h2>
+    <div class="tabs" role="tablist" aria-label="Contenido de accesibilidad">
+      <button role="tab" id="tab-1" aria-controls="panel-1" aria-selected="true" tabindex="0">Introducción</button>
+      <button role="tab" id="tab-2" aria-controls="panel-2" aria-selected="false" tabindex="-1">Recursos</button>
+      <button role="tab" id="tab-3" aria-controls="panel-3" aria-selected="false" tabindex="-1">Contacto</button>
+    </div>
+
+    <div id="panel-1" class="tabpanel" role="tabpanel" tabindex="0" aria-labelledby="tab-1">Contenido de Introducción…</div>
+    <div id="panel-2" class="tabpanel" role="tabpanel" tabindex="0" aria-labelledby="tab-2" hidden>Listado de recursos…</div>
+    <div id="panel-3" class="tabpanel" role="tabpanel" tabindex="0" aria-labelledby="tab-3" hidden>Formulario de contacto…</div>
+  </section>
+
+  <!-- role="table" -->
+  <section>
+    <h2>Ejemplo de tabla con role="table"</h2>
+    <div class="table" role="table" aria-label="Resumen de herramientas">
+      <div role="rowgroup">
+        <div role="row">
+          <span role="columnheader">Herramienta</span>
+          <span role="columnheader">Descripción</span>
+        </div>
+      </div>
+      <div role="rowgroup">
+        <div role="row">
+          <span role="cell">Lector de pantalla</span>
+          <span role="cell">Salida por voz del contenido</span>
+        </div>
+        <div role="row">
+          <span role="cell">Contrast Checker</span>
+          <span role="cell">Verifica contraste de color</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- role="img" -->
+  <section>
+    <h2>Ejemplo con role="img"</h2>
+    <div
+      class="fake-img"
+      role="img"
+      aria-label="Gráfico abstracto con colores azul y turquesa">
+    </div>
+  </section>
+
+  <script>
+    // Script para tabs accesibles
+    const tabs = Array.from(document.querySelectorAll('[role="tab"]'));
+    const panels = Array.from(document.querySelectorAll('[role="tabpanel"]'));
+
+    function activateTab(tab){
+      tabs.forEach(t => { t.setAttribute('aria-selected','false'); t.tabIndex = -1; });
+      panels.forEach(p => p.hidden = true);
+      tab.setAttribute('aria-selected','true');
+      tab.tabIndex = 0;
+      document.getElementById(tab.getAttribute('aria-controls')).hidden = false;
+      tab.focus();
+    }
+
+    tabs.forEach((tab, i) => {
+      tab.addEventListener('click', () => activateTab(tab));
+      tab.addEventListener('keydown', e => {
+        if(e.key === 'ArrowRight') activateTab(tabs[(i+1)%tabs.length]);
+        if(e.key === 'ArrowLeft')  activateTab(tabs[(i-1+tabs.length)%tabs.length]);
+      });
+    });
+  </script>
+</body>
+</html>

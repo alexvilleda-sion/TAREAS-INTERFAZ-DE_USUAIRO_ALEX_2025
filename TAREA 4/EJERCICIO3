@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Ejercicio 3 - Propiedades ARIA</title>
+  <style>
+    body { font-family: Arial, sans-serif; padding: 20px; }
+    .campo { margin-bottom: 16px; }
+    .checkbox-custom {
+      display: inline-block;
+      padding: .5rem .75rem;
+      border: 2px solid #0ea5e9;
+      border-radius: .5rem;
+      cursor: pointer;
+      user-select: none;
+    }
+    .checkbox-custom[aria-checked="true"] {
+      background: #0ea5e9;
+      color: white;
+    }
+  </style>
+</head>
+<body>
+  <h1>Ejercicio 3 — Propiedades ARIA</h1>
+
+  <!-- aria-readonly -->
+  <section>
+    <h2>Ejemplo de aria-readonly</h2>
+    <div role="spinbutton"
+         aria-valuemin="0"
+         aria-valuemax="10"
+         aria-valuenow="5"
+         aria-readonly="true"
+         tabindex="0"
+         style="display:inline-block; padding:10px; border:1px solid #aaa;">
+      Valor fijo: 5
+    </div>
+  </section>
+
+  <!-- aria-required -->
+  <section>
+    <h2>Ejemplo de aria-required</h2>
+    <div class="campo">
+      <label id="combo-label" for="combobox">Selecciona una opción (obligatorio):</label>
+      <div role="combobox"
+           id="combobox"
+           aria-expanded="false"
+           aria-required="true"
+           aria-owns="lista-opciones"
+           aria-haspopup="listbox"
+           tabindex="0"
+           aria-autocomplete="list"
+           style="display:inline-block; padding:10px; border:1px solid #aaa; width:200px;">
+        <!-- valor elegido aparecería aquí -->
+      </div>
+      <ul id="lista-opciones" role="listbox" hidden style="border:1px solid #aaa; width:200px; padding:0; margin:0; list-style:none;">
+        <li role="option" style="padding:6px;">Opción A</li>
+        <li role="option" style="padding:6px;">Opción B</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- aria-checked -->
+  <section>
+    <h2>Ejemplo de aria-checked</h2>
+    <div id="chk-1"
+         role="checkbox"
+         aria-checked="false"
+         tabindex="0"
+         class="checkbox-custom">
+      Recibir novedades
+    </div>
+  </section>
+
+  <script>
+    // Checkbox personalizado con aria-checked
+    const chk = document.getElementById('chk-1');
+    function toggleCheck(){
+      chk.setAttribute('aria-checked',
+        chk.getAttribute('aria-checked') === 'true' ? 'false' : 'true');
+    }
+    chk.addEventListener('click', toggleCheck);
+    chk.addEventListener('keydown', e => {
+      if(e.key === ' ' || e.key === 'Enter'){ e.preventDefault(); toggleCheck(); }
+    });
+  </script>
+</body>
+</html>
