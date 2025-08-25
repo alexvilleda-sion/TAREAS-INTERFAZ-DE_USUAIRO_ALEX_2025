@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>5 Rectángulos: 2 Arriba y 3 Abajo</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background: linear-gradient(135deg, #1a2a6c 0%, #b21f1f 50%, #fdbb2d 100%);
+            padding: 20px;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 800px;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
+        }
+
+        .title {
+            text-align: center;
+            color: white;
+            margin-bottom: 40px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .title h1 {
+            font-size: 2.8rem;
+            margin-bottom: 10px;
+        }
+
+        .title p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+
+        .layout {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+        }
+
+        .row {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+        }
+
+        .rectangle {
+            height: 150px;
+            flex: 1;
+            border-radius: 12px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            font-weight: bold;
+            font-size: 1.8rem;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease;
+            cursor: pointer;
+            min-width: 0; /* Permite que se ajusten al tamaño disponible */
+        }
+
+        .rectangle:hover {
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Ajustamos el ancho de los rectángulos inferiores para que coincidan con los superiores */
+        .row--top .rectangle {
+            flex: 1; /* Cada rectángulo superior ocupa 1 parte del espacio */
+        }
+
+        .row--bottom .rectangle {
+            flex: 0 0 calc(50% - 15px); /* Mismo ancho que los superiores (50% - gap/2) */
+            max-width: calc(50% - 15px); /* Limita el ancho máximo */
+        }
+
+        .rectangle--one {
+            background: linear-gradient(135deg, #FF416C 0%, #FF4B2B 100%);
+        }
+
+        .rectangle--two {
+            background: linear-gradient(135deg, #3494E6 0%, #3457D5 100%);
+        }
+
+        .rectangle--three {
+            background: linear-gradient(135deg, #00b09b 0%, #96c93d 100%);
+        }
+
+        .rectangle--four {
+            background: linear-gradient(135deg, #f46b45 0%, #eea849 100%);
+        }
+
+        .rectangle--five {
+            background: linear-gradient(135deg, #8E2DE2 0%, #4A00E0 100%);
+        }
+
+        .footer {
+            text-align: center;
+            color: white;
+            margin-top: 50px;
+            opacity: 0.8;
+            font-size: 1rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .row {
+                flex-direction: column;
+            }
+            
+            .row--bottom .rectangle {
+                flex: 1; /* En móvil, ocupan todo el ancho disponible */
+                max-width: 100%;
+            }
+            
+            .title h1 {
+                font-size: 2.2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="title">
+            <h1>Cinco Rectángulos</h1>
+            <p></p>
+        </div>
+        
+        <div class="layout">
+            <div class="row row--top">
+                <div class="rectangle rectangle--one">1</div>
+                <div class="rectangle rectangle--two">2</div>
+            </div>
+            
+            <div class="row row--bottom">
+                <div class="rectangle rectangle--three">3</div>
+                <div class="rectangle rectangle--four">4</div>
+                <div class="rectangle rectangle--five">5</div>
+            </div>
+        </div>
+        
+        <div class="footer">
+            <p></p>
+        </div>
+    </div>
+</body>
+</html>

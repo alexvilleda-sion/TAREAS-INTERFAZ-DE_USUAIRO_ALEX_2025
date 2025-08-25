@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>5 Rectángulos - </title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background: linear-gradient(135deg, #1a2a6c 0%, #b21f1f 50%, #fdbb2d 100%);
+            padding: 20px;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 800px;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
+        }
+
+        .title {
+            text-align: center;
+            color: white;
+            margin-bottom: 40px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .title h1 {
+            font-size: 2.8rem;
+            margin-bottom: 10px;
+        }
+
+        .title p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+
+        .layout {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            grid-template-rows: repeat(2, 1fr);
+            gap: 20px;
+            height: 400px;
+        }
+
+        .rectangle {
+            border-radius: 12px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            font-weight: bold;
+            font-size: 1.8rem;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .rectangle:hover {
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .rectangle--four {
+            background: linear-gradient(135deg, #f46b45 0%, #eea849 100%);
+            grid-column: 1;
+            grid-row: 1;
+        }
+
+        .rectangle--one {
+            background: linear-gradient(135deg, #FF416C 0%, #FF4B2B 100%);
+            grid-column: 1;
+            grid-row: 2;
+        }
+
+        .rectangle--two {
+            background: linear-gradient(135deg, #3494E6 0%, #3457D5 100%);
+            grid-column: 2;
+            grid-row: 2;
+        }
+
+        .rectangle--three {
+            background: linear-gradient(135deg, #00b09b 0%, #96c93d 100%);
+            grid-column: 3;
+            grid-row: 2;
+        }
+
+        .rectangle--five {
+            background: linear-gradient(135deg, #8E2DE2 0%, #4A00E0 100%);
+            grid-column: 3;
+            grid-row: 1;
+        }
+
+        .footer {
+            text-align: center;
+            color: white;
+            margin-top: 50px;
+            opacity: 0.8;
+            font-size: 1rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .layout {
+                grid-template-columns: 1fr;
+                grid-template-rows: repeat(5, 1fr);
+                height: auto;
+            }
+            
+            .rectangle {
+                grid-column: 1 !important;
+                grid-row: auto !important;
+                height: 80px;
+            }
+            
+            .title h1 {
+                font-size: 2.2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="title">
+            <h1>Cinco Rectángulos</h1>
+            <p></p>
+        </div>
+        
+        <div class="layout">
+            <div class="rectangle rectangle--four">Item 4</div>
+            <div class="rectangle rectangle--one">Item 1</div>
+            <div class="rectangle rectangle--two">Item 2</div>
+            <div class="rectangle rectangle--three">Item 3</div>
+            <div class="rectangle rectangle--five">Item 5</div>
+        </div>
+        
+        <div class="footer">
+            <p></p>
+        </div>
+    </div>
+</body>
+</html>
